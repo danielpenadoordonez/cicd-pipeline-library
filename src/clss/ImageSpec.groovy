@@ -7,7 +7,7 @@ public class ImageSpec{
     public ImageSpec(String name, String dockerfilePath, String tag){
         this.name = name
         this.dockerfilePath = dockerfilePath
-        this.tag = tag
+        this.tag = tag == "" || tag.isAllWhitespace() ? null : tag
     }
 
     public ImageSpec(String name, String dockerfilePath){
@@ -16,9 +16,15 @@ public class ImageSpec{
         this.tag = null
     }
 
-    @overried
     public String toString(){
-        String imageTag = tag != null || tag != "" ? this.tag : ""
-        return "${this.name}:${this.tag}"
+        String imageTag =  ""
+
+        if(this.tag != null){
+            imageTag = this.tag
+        } else {
+            imageTag = "latest"
+        }
+
+        return "${this.name}:${imageTag}"
     }
 }
