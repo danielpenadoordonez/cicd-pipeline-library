@@ -1,6 +1,6 @@
 import clss.ImageSpec
 
-def build_images(List<ImageSpec> imageSpecs){
+def buildImages(List<ImageSpec> imageSpecs){
     def images = []
 
     imageSpecs.each{ imageSpec ->
@@ -10,4 +10,21 @@ def build_images(List<ImageSpec> imageSpecs){
     }
 
     return images
+}
+
+void login(String username, String password, String registry = null){
+    if(registry != null){
+        sh "docker login ${registry} -u ${username} -p ${password}"
+    }
+    else {
+        sh "docker login -u ${username} -p ${password}"
+    }
+}
+
+void logout(){
+    sh "docker logout"
+}
+
+void pushImages(def images){
+    images.each{image -> image.push()}
 }
