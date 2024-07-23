@@ -1,3 +1,5 @@
+package clss
+
 public class ImageSpec{
 
     public String name
