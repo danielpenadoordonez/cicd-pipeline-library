@@ -28,3 +28,7 @@ void logout(){
 void pushImages(def images){
     images.each{image -> image.push()}
 }
+
+void removeImages(def images){
+    images.each{image -> sh "docker rmi ${image}"}
+}
