@@ -29,6 +29,6 @@ void pushImages(def images){
     images.each{image -> image.push()}
 }
 
-void removeImages(def images){
+void removeImages(List<String> images){
     images.each{image -> sh "docker rmi ${image}"}
 }
